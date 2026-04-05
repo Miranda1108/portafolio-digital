@@ -339,7 +339,7 @@ def draw_main(c):
     certs = [
         ("JavaScript", "Santander / Becas Santander"),
         ("Data Analyst Essentials", "Cisco Networking Academy"),
-        ("Inteligencia Artificial", "Tecnol\u00f3gico de Monterrey (TECM)"),
+        ("Inteligencia Artificial", "Tecnol\u00f3gico Nacional de M\u00e9xico (TecNM)"),
         ("Exploring SAP Analytics Cloud", "SAP"),
     ]
 
