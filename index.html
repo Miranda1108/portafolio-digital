@@ -315,23 +315,31 @@
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 2rem;
-      transition: all .4s ease;
+      transition: all .5s cubic-bezier(.25,.46,.45,.94);
       position: relative; overflow: hidden;
     }
-    /* Glow effect */
+    /* Top accent line */
+    .skill-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0; transition: opacity .5s;
+    }
+    /* Inner glow */
     .skill-card::after {
       content: ''; position: absolute;
-      inset: -1px; border-radius: 16px;
-      background: conic-gradient(from 0deg, transparent, var(--accent), transparent, transparent);
-      opacity: 0; transition: opacity .5s; z-index: -1;
-      animation: rotateBorder 4s linear infinite;
+      top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 0%), rgba(200,255,0,.06) 0%, transparent 50%);
+      opacity: 0; transition: opacity .5s;
+      pointer-events: none;
     }
     .skill-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 0 40px rgba(200,255,0,.08), 0 20px 60px rgba(0,0,0,.3);
+      border-color: rgba(200,255,0,.3);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.4), 0 0 30px rgba(200,255,0,.06);
     }
-    .skill-card:hover::after { opacity: .3; }
+    .skill-card:hover::before { opacity: 1; }
+    .skill-card:hover::after { opacity: 1; }
 
     .skill-card__icon {
       width: 44px; height: 44px;
@@ -1129,6 +1137,19 @@
       });
     }, { threshold: 0.5 });
     counters.forEach(c => counterObserver.observe(c));
+
+    // ── Skill Card Mouse Glow ──
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.querySelectorAll('.skill-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          card.style.setProperty('--mouse-x', x + '%');
+          card.style.setProperty('--mouse-y', y + '%');
+        });
+      });
+    }
 
     // ── 3D Tilt on Project Cards ──
     if (window.matchMedia('(pointer: fine)').matches) {
