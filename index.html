@@ -318,28 +318,36 @@
       transition: all .5s cubic-bezier(.25,.46,.45,.94);
       position: relative; overflow: hidden;
     }
-    /* Top accent line */
+    /* Digital grid background */
     .skill-card::before {
-      content: ''; position: absolute;
-      top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      opacity: 0; transition: opacity .5s;
-    }
-    /* Inner glow */
-    .skill-card::after {
-      content: ''; position: absolute;
-      top: -50%; left: -50%; width: 200%; height: 200%;
-      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 0%), rgba(200,255,0,.06) 0%, transparent 50%);
-      opacity: 0; transition: opacity .5s;
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(200,255,0,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,255,0,.03) 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0;
+      transition: opacity .6s;
       pointer-events: none;
     }
+    /* Scan line sweep */
+    .skill-card::after {
+      content: ''; position: absolute;
+      top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(200,255,0,.05), rgba(200,255,0,.08), rgba(200,255,0,.05), transparent);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .3s;
+    }
     .skill-card:hover {
-      border-color: rgba(200,255,0,.3);
+      border-color: rgba(200,255,0,.25);
       transform: translateY(-6px);
-      box-shadow: 0 12px 40px rgba(0,0,0,.4), 0 0 30px rgba(200,255,0,.06);
+      box-shadow: 0 12px 40px rgba(0,0,0,.4), 0 0 20px rgba(200,255,0,.04);
     }
     .skill-card:hover::before { opacity: 1; }
-    .skill-card:hover::after { opacity: 1; }
+    .skill-card:hover::after {
+      opacity: 1;
+      animation: scanLine 2s ease-in-out infinite;
+    }
 
     .skill-card__icon {
       width: 44px; height: 44px;
@@ -615,6 +623,10 @@
     }
 
     /* ── Animations ── */
+    @keyframes scanLine {
+      0% { left: -50%; }
+      100% { left: 120%; }
+    }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -1137,19 +1149,6 @@
       });
     }, { threshold: 0.5 });
     counters.forEach(c => counterObserver.observe(c));
-
-    // ── Skill Card Mouse Glow ──
-    if (window.matchMedia('(pointer: fine)').matches) {
-      document.querySelectorAll('.skill-card').forEach(card => {
-        card.addEventListener('mousemove', e => {
-          const rect = card.getBoundingClientRect();
-          const x = ((e.clientX - rect.left) / rect.width) * 100;
-          const y = ((e.clientY - rect.top) / rect.height) * 100;
-          card.style.setProperty('--mouse-x', x + '%');
-          card.style.setProperty('--mouse-y', y + '%');
-        });
-      });
-    }
 
     // ── 3D Tilt on Project Cards ──
     if (window.matchMedia('(pointer: fine)').matches) {
