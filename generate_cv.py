@@ -49,7 +49,7 @@ def draw_sidebar(c):
     c.setFillColor(ACCENT)
     c.drawString(x, y, "Ing. en Sistemas Computacionales")
     y -= 12
-    c.drawString(x, y, "Estudiante | 5to Semestre")
+    c.drawString(x, y, "Estudiante | 6to Semestre")
 
     # Divider
     y -= 18
@@ -241,7 +241,7 @@ def draw_main(c):
     y -= 12
     c.setFillColor(ACCENT_DARK)
     c.setFont("Helvetica-Oblique", 7.5)
-    c.drawString(x_start, y, "5to Semestre  |  2023 - Presente")
+    c.drawString(x_start, y, "6to Semestre  |  2023 - Presente")
     y -= 22
 
     # ── EXPERIENCIA & PROYECTOS ──
