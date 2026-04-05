@@ -298,21 +298,21 @@ def draw_main(c):
     # Project 2
     c.setFillColor(DARK_TEXT)
     c.setFont("Helvetica-Bold", 9.5)
-    c.drawString(x_start, y, "Advance")
+    c.drawString(x_start, y, "ADVANCE \u2014 CRM & Bot WhatsApp")
     c.setFillColor(MID_TEXT)
     c.setFont("Helvetica", 8)
     c.drawRightString(x_end, y, "Desarrollo Freelance")
     y -= 12
     c.setFillColor(ACCENT_DARK)
     c.setFont("Helvetica-Oblique", 7.5)
-    c.drawString(x_start, y, "Python / FastAPI  |  React.js  |  PostgreSQL  |  Docker")
+    c.drawString(x_start, y, "Node.js  |  Express  |  PostgreSQL  |  Meta WhatsApp API  |  Google Calendar API  |  JWT")
     y -= 14
 
     bullets_2 = [
-        "Arquitectura e implementaci\u00f3n de plataforma web fullstack con separaci\u00f3n clara de responsabilidades (frontend/backend/DB).",
-        "Desarrollo de backend con FastAPI, incluyendo endpoints documentados con OpenAPI/Swagger para integraci\u00f3n de equipos.",
-        "Modelado de base de datos relacional en PostgreSQL con migraciones versionadas y queries optimizadas con \u00edndices.",
-        "Contenerizaci\u00f3n del entorno de desarrollo con Docker y Docker Compose para garantizar reproducibilidad del stack.",
+        "Desarrollo de sistema CRM con bot de WhatsApp (Meta Cloud API) que automatiza captaci\u00f3n de prospectos mediante flujo conversacional de 13 etapas.",
+        "Implementaci\u00f3n de dashboard administrativo con autenticaci\u00f3n JWT, roles (admin/asesor), gr\u00e1ficas con Chart.js y exportaci\u00f3n CSV.",
+        "Integraci\u00f3n con Google Calendar (OAuth2) para agendamiento autom\u00e1tico de citas con asignaci\u00f3n round-robin de asesores.",
+        "Automatizaci\u00f3n de reportes diarios/semanales (SendGrid + WhatsApp), recordatorios 36h pre-cita y seguimiento post-cita con node-cron.",
     ]
 
     for bullet in bullets_2:
