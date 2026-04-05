@@ -504,18 +504,18 @@
       position: relative; overflow: hidden;
     }
 
-    /* Animated gradient border for contact CTA */
+    /* Pulse glow border for contact CTA */
     .contact__cta-wrap {
       position: relative; display: inline-block;
     }
     .contact__cta-wrap::before {
       content: ''; position: absolute;
       inset: -3px; border-radius: 55px;
-      background: conic-gradient(from var(--cta-angle, 0deg), var(--accent), #00d4ff, #ff006e, var(--accent));
+      background: var(--accent);
       z-index: -1;
-      animation: rotateCTA 3s linear infinite;
-      opacity: .7;
-      filter: blur(4px);
+      opacity: 0;
+      filter: blur(12px);
+      animation: ctaPulseGlow 3s ease-in-out infinite;
     }
 
     .contact__title {
@@ -653,13 +653,9 @@
       0% { transform: translate(0, 0) scale(1); }
       100% { transform: translate(40px, -30px) scale(1.1); }
     }
-    @keyframes rotateBorder {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    @keyframes rotateCTA {
-      from { --cta-angle: 0deg; }
-      to { --cta-angle: 360deg; }
+    @keyframes ctaPulseGlow {
+      0%, 100% { opacity: 0; transform: scale(.95); }
+      50% { opacity: .5; transform: scale(1.05); }
     }
     @keyframes shimmer {
       0% { background-position: -200% center; }
@@ -671,11 +667,6 @@
       100% { transform: scale(1); }
     }
 
-    @property --cta-angle {
-      syntax: '<angle>';
-      initial-value: 0deg;
-      inherits: false;
-    }
 
     /* Reveal on scroll */
     .reveal {
