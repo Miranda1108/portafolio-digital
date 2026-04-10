@@ -138,12 +138,13 @@ def draw_sidebar(c):
     y -= 14
 
     competencias = [
+        "Arquitectura de soluciones",
+        "Integraci\u00f3n de APIs",
         "Trabajo en equipo",
-        "Resolucion de problemas",
+        "Resoluci\u00f3n de problemas",
         "Aprendizaje continuo",
-        "Comunicacion efectiva",
+        "Comunicaci\u00f3n efectiva",
         "Adaptabilidad",
-        "Gestion del tiempo",
     ]
     c.setFillColor(SIDEBAR_TEXT)
     c.setFont("Helvetica", 7.5)
